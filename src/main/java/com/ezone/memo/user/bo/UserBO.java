@@ -22,6 +22,6 @@ public class UserBO {
 		String encryptPassword = EncryptUtils.md5(password);
 		
 		
-		return userDAO.insertUser(loginId, password, name, email);
+		return userDAO.insertUser(loginId, encryptPassword, name, email);
 	}
 }

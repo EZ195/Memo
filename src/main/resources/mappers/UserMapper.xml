@@ -27,7 +27,8 @@
 	
 	<select id="selectUser" parameterType="map" resultType="com.ezone.memo.user.model.User">
 		SELECT
-			`loginId`
+			`id`
+			,`loginId`
 			,`password`
 			,`name`
 			,`email`

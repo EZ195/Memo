@@ -13,7 +13,7 @@
 		<h1 class="ml-3">Memo</h1>
 		
 		<c:if test="${not empty userId }">  <!-- session에서 사용되는 키는 바로 가져올 수 있음 session.setAttribute("userId", user.getId());에서 가져옴-->
-			<div class="mr-3"> ${userName } 님<a href="/user/sign_out">로그아웃</a> </div>
+			<div class="mr-3"> ${userName } 님 <a href="/user/sign_out">로그아웃</a></div>
 		</c:if>
 		
 	</header>

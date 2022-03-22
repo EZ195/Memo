@@ -18,7 +18,7 @@ public class PostBO {
 	public int addPost(int userId, String subject, String content, MultipartFile file) {
 		
 		// 파일을 저장하고, 경로를 만들어 낸다.
-		file.getBytes();
+
 		return postDAO.insertPost(userId, subject, content);
 		
 	}

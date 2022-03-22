@@ -14,6 +14,7 @@ public interface PostDAO {
 			@Param("userId") int userId,
 			@Param("subject") String subject,
 			@Param("content") String content);
+	
 	public List<Post> selectList(@Param("userId") int userId);
 	
 	public Post selectPost(@Param("id") int id);

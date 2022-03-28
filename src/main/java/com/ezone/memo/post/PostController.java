@@ -40,7 +40,7 @@ public class PostController {
 	}
 	
 	@GetMapping("/detail_view")
-	public String detailView(@RequestParam("id") int id,Model model) {
+	public String detailView(@RequestParam("id") int id, Model model) {
 		
 		Post post = postBO.getPost(id);
 		

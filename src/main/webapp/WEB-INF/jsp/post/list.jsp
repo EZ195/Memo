@@ -14,6 +14,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+	
 <body>
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp"/>
@@ -34,8 +35,8 @@
 					<c:forEach var="post" items="${postList }">
 						<tr>
 							<td>${post.id }</td>
-							<td><a href="/post/detail_view?id=">${post.subject}</a></td>
-							<td>${post.createdAt}</td>
+							<td><a href="/post/detail_view?id=${post.id }">${post.subject}</a></td>
+							<td><fmt:formatDate value="${post.createdAt }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						</tr>
 					</c:forEach>
 					</tbody>

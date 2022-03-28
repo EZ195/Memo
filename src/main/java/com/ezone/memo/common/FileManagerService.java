@@ -6,14 +6,29 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileManagerService {
 	
-	private String FILE_UPLOAD_PATH = "C:\\Users\\EZi09\\Desktop\\ezone\\memo\\upload\\images/";
+	// static 붙여주면 다 쓸 수 있음, final 붙이면 다른 곳에서 수정 불가
+	//'FILE_UPLOAD_PATH' 라는 변수에 저장할 폴더 경로 값을 담았음
+	public final static String FILE_UPLOAD_PATH = "C:\\Users\\EZi09\\Desktop\\ezone\\memo\\upload\\images/";
+	
+	//프로그램 개발 중이나 완료 후 발생할 수 있는 오류에 대해 디버깅하거나 운영 중인 프로그램 상태를 모니터링 하기 위해 필요한 정보(로그)를 기록하는 것
+	private static Logger logger = LoggerFactory.getLogger(FileManagerService.class);
+	
+	
 	//파일저장
 	//파일 저장 후 접근 경로 리턴
-	public String saveFile(int userId, MultipartFile file) {
+	public static String saveFile(int userId, MultipartFile file) {
+		
+		if(file == null) {
+			
+			logger.error("FileManagerService-saveFile : 파일 없음");
+			return null;
+		}
 		
 		// 파일경로
 		// userId 가져오는 이유 : 사용자별로 파일이름이 겹치는 걸 방지하기 위해 사용자별로 폴더를 구분한다.
@@ -30,6 +45,7 @@ public class FileManagerService {
 		File directory = new File(filePath);
 		if (directory.mkdir() == false) {
 			// 디렉토리 생성 에러
+			logger.error("FileManagerService-saveFile : 디렉토리 생성 에러");
 			return null;
 		}
 		
@@ -42,6 +58,7 @@ public class FileManagerService {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
+			logger.error("FileManagerService-saveFile : 파일 저장 에러");
 			return null;
 		}
 		

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt"   uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,11 +27,10 @@
 				<input type="text" class="form-comtorl col-11" id="titleInput">
 			</div>
 			<textarea class="form-control mt-3" rows="5" id="contentInput"></textarea>
-			<input type="file">
+			<input type="file" class="mt-3" id="fileInput">
 			<div class="d-flex justify-content-between mt-3">
 				<a href="/post/list_view" class="btn btn-info">목록으로</a>
 				<button type="button" id="saveBtn" class="btn btn-success">저장</button>
-				
 			</div>
 		</div>
 	</section>
@@ -58,10 +56,21 @@
 					return;
 				}
 				
+				var formData = new FormData();
+				formData.append("subject",title);
+				formData.append("content",content);
+				// 실제 파일은 files에 저장되어 있음 files는 배열
+				formData.append("file",$("#fileInput")[0].files[0]);	
+				
+				
 				$.ajax({
 					type:"post",
 					url:"/post/create",
-					data:{"subject":title , "content":content},
+					data:formData,
+					// file 보낼 때 필요한 옵션들
+					enctype:"multipart/form-data",		// 파일 업로드 필수옵션
+					processData:false,					// 파일 업로드 필수옵션
+					contentType:false,					// 파일 업로드 필수옵션
 					success:function(data){
 						if (data.result == "success"){
 							alert("메모쓰기 성공");

@@ -64,6 +64,58 @@ public class FileManagerService {
 		
 		// img src="/images/6_12912654/test.png" 여기에 들어갈 경로를 리턴해주는 것
 		return "/images/" + directoryName + file.getOriginalFilename();
+		
+	}
+	// 파일 삭제하는 메소드
+	public static boolean removeFile(String filePath) {
+		
+		if(filePath == null) {
+			logger.error("FileMangerService-removeFile : 파일 삭제 실패");
+			return false;
+		}
+		
+		// 저장해둔 경로 가져와서 삭제해야함
+		// filePath : /images/2_54654512/test.jpg
+		// 실제 지울 파일의 실제 경로 : C:\\Users\\EZi09\\Desktop\\ezone\\memo\\upload\\images\\6_12912654/test.png
+		// File_UPLOAD_PATH + 2_54654512/test.jpg - images 밑의 경로를 이어붙여줘야함
+		
+		String realFilePath = FILE_UPLOAD_PATH + filePath.replace("/images/", "");
+		
+		// 파일 삭제
+		Path path = Paths.get(realFilePath);
+		
+		// 파일이 있는지 확인
+		if(Files.exists(path)) {
+			
+			
+			try {
+				Files.delete(path);
+			} catch (IOException e) {
+				logger.error("FileMangerService-removeFile : 파일 삭제 실패");				
+				e.printStackTrace();
+				return false;
+			}
+		}
+		
+		// 실제 지울 파일의 실제 경로 : C:\\Users\\EZi09\\Desktop\\ezone\\memo\\upload\\images\\6_12912654/test.png
+		// 디렉토리 삭제
+		// 디렉토리 경로 : C:\\Users\\EZi09\\Desktop\\ezone\\memo\\upload\\images\\6_12912654/test
+		
+		path = path.getParent();
+		
+		// 디렉토리 존재 여부
+		if(Files.exists(path)) {
+			try {
+				Files.delete(path);
+			} catch (IOException e) {
+				logger.error("FileMangerService-removeFile : 디렉토리 삭제 실패");
+				e.printStackTrace();
+				return false;
+			}
+		}
+		
+		return true;
+		
 	}
 
 }

@@ -33,5 +33,19 @@ public class PostBO {
 		
 		return postDAO.selectPost(id);
 	}
+	
+	public int updatePost(int postId, String subject, String content) {
+		return postDAO.updatePost(postId, subject, content);
+	}
+	
+	public int deletePost(int postId , int userId) {
+		
+		Post post = this.getPost(postId);
+		// 파일 삭제 
+		
+		FileManagerService.removeFile(post.getImagePath());
+		
+		return postDAO.deletePost(postId,userId);
+	}
 
 }

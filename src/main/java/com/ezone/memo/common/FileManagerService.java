@@ -70,7 +70,7 @@ public class FileManagerService {
 	public static boolean removeFile(String filePath) {
 		
 		if(filePath == null) {
-			logger.error("FileMangerService-removeFile : 파일 삭제 실패");
+			logger.error("FileManagerService-removeFile : 파일 삭제 실패");
 			return false;
 		}
 		
@@ -91,7 +91,7 @@ public class FileManagerService {
 			try {
 				Files.delete(path);
 			} catch (IOException e) {
-				logger.error("FileMangerService-removeFile : 파일 삭제 실패");				
+				logger.error("FileManagerService-removeFile : 파일 삭제 실패");				
 				e.printStackTrace();
 				return false;
 			}
@@ -108,7 +108,7 @@ public class FileManagerService {
 			try {
 				Files.delete(path);
 			} catch (IOException e) {
-				logger.error("FileMangerService-removeFile : 디렉토리 삭제 실패");
+				logger.error("FileManagerService-removeFile : 디렉토리 삭제 실패");
 				e.printStackTrace();
 				return false;
 			}

@@ -38,12 +38,17 @@ public class PermissionInterceptor implements HandlerInterceptor {
 				return false;
 			}
 		}
-		else { //로그인이 된 상태
-			// 로그인 화면으로 이동해라
-			response.sendRedirect("/post/list_view");
-			return false;
-		}
 		
+		//로그인이 된 상태
+		else { 
+			// 로그인화면 /user/signin_view
+			// 회원가입 /user/signup_view
+			if(uri.startsWith("/user")) {
+				// 리스트 화면으로 이동
+				response.sendRedirect("/post/list_view");
+				return false;				
+			}
+		}
 		return true;
 	}
 	

@@ -36,7 +36,7 @@ public class PostController {
 		List<Post> postList = postBO.getPostList(userId);
 		model.addAttribute("postList" , postList);
 		
-		return "post/list";
+		return "/post/list";
 	}
 	
 	@GetMapping("/detail_view")

@@ -1,17 +1,17 @@
 @charset "UTF-8";
 
 #wrap {
-	width:1200px;
+	width:1000px;
 	margin:auto;
 }
 
 header {
-	height:70px;
+	height:60px;
 	background-color:#dddddd;
 }
 
 footer {
-	height:70px;
+	height:30px;
 	background-color:#dddddd;
 }
 

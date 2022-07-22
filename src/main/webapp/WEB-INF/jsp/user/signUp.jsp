@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,27 +17,28 @@
 <body>
 	
 	<div id="wrap">
-		<header class="d-flex align-items-center">
-			<h1 class="ml-3">Memo</h1>
-		</header>
-		
+		<c:import url="/WEB-INF/jsp/include/header.jsp"/>
+				
 		<section class="d-flex justify-content-center">
 			<div class="join-box my-5">
-				<h1 class="text-center">회원 가입</h1>
-
-				<!-- 아이디, 패스워드, 패스워드 확인, 이름, 이메일 -->
-				<input type="text" id="loginIdInput" class="form-control mt-3" placeholder="아이디">
-				<input type="password" id="passwordInput" class="form-control mt-3" placeholder="비밀번호">
-				<input type="password" id="passwordConfirmInput" class="form-control mt-3" placeholder="비밀번호 확인">	
-				<input type="text" id="nameInput" class="form-control mt-3" placeholder="이름">
-				<input type="text" id="emailInput" class="form-control mt-3" placeholder="이메일">
-				
-				<button type="button" id="joinBtn" class="btn btn-info btn-block mt-3">회원가입</button>
+				<div>
+					<h1 class="text-center">회원 가입</h1>
+	
+					<!-- 아이디, 패스워드, 패스워드 확인, 이름, 이메일 -->
+					<input type="text" id="loginIdInput" class="form-control mt-3" placeholder="아이디">
+					<input type="password" id="passwordInput" class="form-control mt-3" placeholder="비밀번호">
+					<input type="password" id="passwordConfirmInput" class="form-control mt-3" placeholder="비밀번호 확인">	
+					<input type="text" id="nameInput" class="form-control mt-3" placeholder="이름">
+					<input type="text" id="emailInput" class="form-control mt-3" placeholder="이메일">
+				</div>
+				<div class="text-center mx-3">
+					<button type="button" id="joinBtn" class="btn btn-info btn-block mt-3">회원가입</button>
+					<p class="my-3"><a href="/user/signin_view">로그인하기</a></p>
+				</div>
 			</div>
 		</section>		
-		<footer class="d-flex justify-content-center align-items-center">
-			Copyright 2022.EZONE_MEMO. all rights reserved.
-		</footer>
+		
+		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
 	
 	<script>
